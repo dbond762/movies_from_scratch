@@ -103,6 +103,34 @@ class Router {
     }
 
     /**
+     * @param string $pattern
+     * @param \Closure $func - принимает ссылку на роутер и производит его настройку
+     *
+     * @throws RouterException
+     */
+    public function route(string $pattern, \Closure $func) {
+        $r = new Router();
+        $func($r);
+
+        $this->mount($pattern, $r);
+    }
+
+    /**
+     * @param string $pattern
+     * @param Router $router
+     *
+     * @throws RouterException
+     */
+    public function mount(string $pattern, Router $router) {
+        if (strlen($pattern) === 0 || $pattern[0] != '/') {
+            throw new RouterException("routing pattern must begin with '/' in '{$pattern}'");
+        }
+
+        $node = new Node(self::METHOD_ANY, self::parse_path($pattern), $router->serve_route, $this->query_params);
+        array_push($this->nodes, $node);
+    }
+
+    /**
      * @return \Closure
      */
     private function get_serve_route(): \Closure {
