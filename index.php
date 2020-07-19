@@ -1,10 +1,11 @@
 <?php
 
 require_once './vendor/autoload.php';
+use Lib\Router\Router;
 
-$r = new Lib\Router\Router();
+$r = new Router();
 
-$r->get('/search/{query}', function ($ctx) {
+$r->get('/search/{query:string}', function ($ctx) {
     echo "search {$ctx['params']['query']}";
 });
 

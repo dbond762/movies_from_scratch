@@ -30,6 +30,11 @@ class Router {
      */
     private $query_params;
 
+    /**
+     * Router constructor.
+     *
+     * @param null $query_params
+     */
     public function __construct($query_params = null) {
         if (is_null($query_params)) {
             $query_params = new QueryParams();
@@ -39,6 +44,13 @@ class Router {
         $this->serve_route = $this->get_serve_route();
     }
 
+    /**
+     * @param string $method
+     * @param string $pattern
+     * @param \Closure $handler
+     *
+     * @throws RouterException
+     */
     private function handle(string $method, string $pattern, \Closure $handler) {
         if (strlen($pattern) === 0 || $pattern[0] != '/') {
             throw new RouterException("routing pattern must begin with '/' in '{$pattern}'");
@@ -48,18 +60,38 @@ class Router {
         array_push($this->nodes, $node);
     }
 
+    /**
+     * @param string $pattern
+     * @param \Closure $handler
+     *
+     * @throws RouterException
+     */
     public function get(string $pattern, \Closure $handler) {
         $this->handle(self::METHOD_GET, $pattern, $handler);
     }
 
+    /**
+     * @param string $pattern
+     * @param \Closure $handler
+     *
+     * @throws RouterException
+     */
     public function post(string $pattern, \Closure $handler) {
         $this->handle(self::METHOD_POST, $pattern, $handler);
     }
 
+    /**
+     * @param mixed ...$middlewares
+     */
     public function having(...$middlewares) {
         array_push($this->middlewares, ...$middlewares);
     }
 
+    /**
+     * @param mixed ...$middlewares
+     *
+     * @return Router
+     */
     public function with(...$middlewares) {
         $r = new Router();
         $r->having(...$middlewares);
@@ -83,12 +115,20 @@ class Router {
         };
     }
 
+    /**
+     * Выполнить роутинг
+     */
     public function serve() {
         $context[self::CTX_KEY_PATH]   = self::parse_path($_SERVER['REQUEST_URI']);
         $context[self::CTX_KEY_METHOD] = $_SERVER['REQUEST_METHOD'];
         ($this->serve_route)($context);
     }
 
+    /**
+     * @param string $path
+     *
+     * @return array
+     */
     private static function parse_path(string $path) : array {
         $parsed_path = trim($path, '/');
         if (empty($parsed_path)) {

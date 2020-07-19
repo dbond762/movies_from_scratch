@@ -2,23 +2,32 @@
 
 namespace Lib\Router;
 
-class QueryParams implements \Iterator {
+class QueryParams {
     /**
      * @var \Closure[]
      */
-    private $params;
+    public $params;
 
     /**
      * @var int
      */
     private $position;
 
+    /**
+     * QueryParams constructor.
+     *
+     * Используется для задания параметров запроса.
+     * Например, '/query/{param:type}' - type - тип параметра param
+     */
     public function __construct() {
         $this->position = 0;
 
         $this->set_default_params();
     }
 
+    /**
+     * Установить параметры по умолчанию.
+     */
     private function set_default_params() {
         $this->add_param('string', function ($item) {
             return $item;
@@ -29,27 +38,13 @@ class QueryParams implements \Iterator {
         });
     }
 
+    /**
+     * Добавить параметр
+     *
+     * @param string $type - тип параметра
+     * @param \Closure $func - функцию для получения параметра (получает параметр со строки запроса, возвращает обработанное значение)
+     */
     public function add_param(string $type, \Closure $func) {
         $this->params[$type] = $func;
-    }
-
-    public function current() {
-        return $this->params[$this->position];
-    }
-
-    public function next() {
-        $this->position++;
-    }
-
-    public function key() {
-        return $this->position;
-    }
-
-    public function valid() {
-        return isset($this->params[$this->position]);
-    }
-
-    public function rewind() {
-        $this->position = 0;
     }
 }
