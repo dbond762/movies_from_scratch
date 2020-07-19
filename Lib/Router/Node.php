@@ -73,7 +73,6 @@ class Node {
             return false;
         }
 
-        $context[Router::CTX_KEY_PARAMS] = [];
         for ($i = 0; $i < count($this->pattern); $i++) {
             if ($path[$i] === $this->pattern[$i]) {
                 continue;

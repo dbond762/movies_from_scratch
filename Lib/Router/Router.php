@@ -149,6 +149,7 @@ class Router {
     public function serve() {
         $context[self::CTX_KEY_PATH]   = self::parse_path($_SERVER['REQUEST_URI']);
         $context[self::CTX_KEY_METHOD] = $_SERVER['REQUEST_METHOD'];
+        $context[self::CTX_KEY_PARAMS] = [];
         ($this->serve_route)($context);
     }
 
