@@ -1,0 +1,20 @@
+{
+  "name": "vendor_name/movies-from-scratch",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Dima Bondarenko",
+      "email": "dbond762@gmail.com"
+    }
+  ],
+  "require": {
+    
+  },
+  "autoload": {
+    "psr-4": {
+      "Lib\\": "Lib/"
+    }
+  }
+}
