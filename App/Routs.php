@@ -11,7 +11,7 @@ function get_router(Router $r) {
         $r->get('/list', Router::controller(Movies::class, 'movies_list'));
         $r->get('/add', Router::controller(Movies::class, 'add_view'));
         $r->post('/add', Router::controller(Movies::class, 'add'));
-        $r->delete('/delete/{id:int}', Router::controller(Movies::class, 'delete'));
+        $r->post('/delete/{id:int}', Router::controller(Movies::class, 'delete'));
         $r->get('/detail/{id:int}', Router::controller(Movies::class, 'detail'));
         $r->get('/search', Router::controller(Movies::class, 'search'));
         $r->post('/import', Router::controller(Movies::class, 'import'));
