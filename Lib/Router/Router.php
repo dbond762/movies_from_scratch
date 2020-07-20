@@ -3,9 +3,10 @@
 namespace Lib\Router;
 
 class Router {
-    public const METHOD_GET  = 'GET';
-    public const METHOD_POST = 'POST';
-    public const METHOD_ANY  = '*';
+    public const METHOD_GET    = 'GET';
+    public const METHOD_POST   = 'POST';
+    public const METHOD_DELETE = 'DELETE';
+    public const METHOD_ANY    = '*';
 
     public const CTX_KEY_PATH   = '_path';
     public const CTX_KEY_METHOD = '_method';
@@ -78,6 +79,16 @@ class Router {
      */
     public function post(string $pattern, \Closure $handler) {
         $this->handle(self::METHOD_POST, $pattern, $handler);
+    }
+
+    /**
+     * @param string $pattern
+     * @param \Closure $handler
+     *
+     * @throws RouterException
+     */
+    public function delete(string $pattern, \Closure $handler) {
+        $this->handle(self::METHOD_DELETE, $pattern, $handler);
     }
 
     /**
@@ -164,5 +175,12 @@ class Router {
             return [];
         }
         return explode('/', $parsed_path);
+    }
+
+    public static function controller($controller, $method) {
+        return function ($ctx) use ($controller, $method) {
+            $ctrl_obj = new $controller();
+            call_user_func_array([$ctrl_obj, $method], [$ctx]);
+        };
     }
 }
