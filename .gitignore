@@ -2,4 +2,8 @@
 
 vendor/
 
+!uploads/
+uploads/*
+!uploads/.gitkeep
+
 App/config.php

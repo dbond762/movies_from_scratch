@@ -10,5 +10,6 @@ class Response {
 
     public static function redirect(string $path) {
         header("Location: {$path}");
+        die();
     }
 }
