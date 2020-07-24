@@ -6,19 +6,19 @@ create table actor
     last_name  varchar(50) not null
 );
 
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (1, 'Марлон', 'Брандо');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (2, 'Аль', 'Пачино');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (3, 'Джеймс', 'Каан');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (4, 'Роберт', 'Де Ниро');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (5, 'Роберт', 'Дюваль');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (6, 'Дайан', 'Китон');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (7, 'Джон', 'Казале');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (8, 'Ли', 'Страсберг');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (9, 'Майкл В.', 'Гаццо');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (10, 'Талия', 'Шайр');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (11, 'Энди', 'Гарсиа');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (12, 'Илай', 'Уоллак');
-INSERT INTO movies_from_scratch.actor (id, first_name, last_name) VALUES (13, 'София', 'Коппола');
+INSERT INTO actor (id, first_name, last_name) VALUES (1, 'Марлон', 'Брандо');
+INSERT INTO actor (id, first_name, last_name) VALUES (2, 'Аль', 'Пачино');
+INSERT INTO actor (id, first_name, last_name) VALUES (3, 'Джеймс', 'Каан');
+INSERT INTO actor (id, first_name, last_name) VALUES (4, 'Роберт', 'Де Ниро');
+INSERT INTO actor (id, first_name, last_name) VALUES (5, 'Роберт', 'Дюваль');
+INSERT INTO actor (id, first_name, last_name) VALUES (6, 'Дайан', 'Китон');
+INSERT INTO actor (id, first_name, last_name) VALUES (7, 'Джон', 'Казале');
+INSERT INTO actor (id, first_name, last_name) VALUES (8, 'Ли', 'Страсберг');
+INSERT INTO actor (id, first_name, last_name) VALUES (9, 'Майкл В.', 'Гаццо');
+INSERT INTO actor (id, first_name, last_name) VALUES (10, 'Талия', 'Шайр');
+INSERT INTO actor (id, first_name, last_name) VALUES (11, 'Энди', 'Гарсиа');
+INSERT INTO actor (id, first_name, last_name) VALUES (12, 'Илай', 'Уоллак');
+INSERT INTO actor (id, first_name, last_name) VALUES (13, 'София', 'Коппола');
 
 create table movie
 (
@@ -29,9 +29,9 @@ create table movie
     format set ('VHS', 'DVD', 'Blu-Ray') default 'DVD' not null
 );
 
-INSERT INTO movies_from_scratch.movie (id, name, year, format) VALUES (1, 'Крестный отец', 1972, 'Blu-Ray');
-INSERT INTO movies_from_scratch.movie (id, name, year, format) VALUES (2, 'Крестный отец 2', 1974, 'Blu-Ray');
-INSERT INTO movies_from_scratch.movie (id, name, year, format) VALUES (3, 'Крестный отец 3', 1990, 'Blu-Ray');
+INSERT INTO movie (id, name, year, format) VALUES (1, 'Крестный отец', 1972, 'Blu-Ray');
+INSERT INTO movie (id, name, year, format) VALUES (2, 'Крестный отец 2', 1974, 'Blu-Ray');
+INSERT INTO movie (id, name, year, format) VALUES (3, 'Крестный отец 3', 1990, 'Blu-Ray');
 
 create table movie_actor
 (
@@ -46,21 +46,21 @@ create table movie_actor
             on update cascade on delete cascade
 );
 
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (1, 1);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (1, 2);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (2, 2);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (3, 2);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (1, 3);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (2, 3);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (2, 4);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (2, 5);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (2, 6);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (3, 6);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (2, 7);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (2, 8);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (2, 9);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (2, 10);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (3, 10);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (3, 11);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (3, 12);
-INSERT INTO movies_from_scratch.movie_actor (movie_id, actor_id) VALUES (3, 13);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (1, 1);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (1, 2);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (2, 2);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (3, 2);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (1, 3);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (2, 3);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (2, 4);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (2, 5);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (2, 6);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (3, 6);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (2, 7);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (2, 8);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (2, 9);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (2, 10);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (3, 10);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (3, 11);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (3, 12);
+INSERT INTO movie_actor (movie_id, actor_id) VALUES (3, 13);
